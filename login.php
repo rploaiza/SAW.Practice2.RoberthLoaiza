@@ -15,6 +15,7 @@ if (isset($_GET['login'])) {
         $salt = $usuario['salt'];
         $hash = hash("sha256", $password . $salt, false);
         if ($hash == $usuario['password']) {
+            session_regenerate_id();
             $_SESSION['autenticado'] = 'correcto';
             $_SESSION['permisos'] = str_split($usuario['permisos']);
             $_SESSION['user'] = $usuario['user'];
